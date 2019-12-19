@@ -10,6 +10,6 @@ COPY package*.json ./
 
 COPY . /opt/app
 
-RUN yarn install --dev && yarn run build
+RUN npm install --dev && npm run build
 
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]
