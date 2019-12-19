@@ -40,7 +40,9 @@ class WebAppDocument extends Document {
     render() {
         return (
             <Html>
-                <Head />
+                <Head>
+                    <script src="https://js.stripe.com/v3/" />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />

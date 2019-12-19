@@ -13,6 +13,7 @@ import { AppWithStore, AppContextWithStore } from "@Interfaces";
 import { makeStore } from "@Redux";
 
 import "@Static/css/reset.scss";
+import { Head } from "next/document";
 // #endregion Local Imports
 
 class WebApp extends App<AppWithStore> {

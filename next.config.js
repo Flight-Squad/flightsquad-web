@@ -4,7 +4,12 @@ const withSass = require("@zeit/next-sass");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const nextRuntimeDotenv = require("next-runtime-dotenv");
 
-const withConfig = nextRuntimeDotenv({ public: ["API_URL", "API_KEY"] });
+const withConfig = nextRuntimeDotenv({
+    public: ["API_URL", "API_KEY"],
+    server: [
+        'STRIPE_API_KEY',
+    ],
+});
 
 const nextConfig = {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
