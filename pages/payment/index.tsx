@@ -26,7 +26,10 @@ export class Payment extends React.Component<
     componentDidMount() {
         // Create Stripe instance in componentDidMount
         // (componentDidMount only fires in browser/DOM environment)
-        const {STRIPE_API_KEY} = getConfig();
+        const {
+            publicRuntimeConfig: { STRIPE_API_KEY},
+        } = getConfig();
+        // const {} = getConfig();
         const stripe = window.Stripe(STRIPE_API_KEY);
         const paymentRequest = stripe.paymentRequest({
             country: 'US',
