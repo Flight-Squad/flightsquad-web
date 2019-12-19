@@ -6,7 +6,7 @@ ENV NODE_ENV production
 
 COPY package*.json ./
 
-RUN npm ci 
+# RUN npm ci 
 
 COPY . /opt/app
 
