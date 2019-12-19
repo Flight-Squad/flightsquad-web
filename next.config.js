@@ -5,7 +5,11 @@ const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const nextRuntimeDotenv = require("next-runtime-dotenv");
 
 const withConfig = nextRuntimeDotenv({
-    public: ["API_URL", "API_KEY"],
+    public: [
+        "API_URL",
+        "API_KEY",
+        'STRIPE_API_KEY',
+    ],
     server: [
         'STRIPE_API_KEY',
     ],
