@@ -1,0 +1,22 @@
+.Checkout-Form-Wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1097px;
+    margin: 0 auto;
+}
+
+.Agenda {
+    color: #314358;
+}
+
+.Travel-List {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+
+.Travel-List li {
+    display: block;
+}

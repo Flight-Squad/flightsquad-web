@@ -1,0 +1,34 @@
+.Part-Title {
+    padding: 10px 30px;
+    border-top: 1px solid #b6b6bc;
+    border-bottom: 1px solid #b6b6bc;
+    color: #000;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.Part-Title address {
+    display: block;
+    float: right;
+    font-style: normal;
+    color: #b6b6bc;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.Part-Title span {
+    display: inline-block;
+    line-height: 20px;
+    width: 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.Part-Title-NoTop {
+    margin-top: 0;
+    border-top: 0;
+}

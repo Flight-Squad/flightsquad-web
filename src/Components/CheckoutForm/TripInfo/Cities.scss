@@ -1,0 +1,33 @@
+.TripInfo-Cities {
+    flex: 8 1;
+}
+
+.TripInfo-Cities h4 {
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 7px 0 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 15px;
+    width: 224px;
+    min-height: 34px;
+    white-space: pre-wrap;
+}
+
+.TripInfo-Cities h4, .TripInfo-Cities h4 span {
+    display: -ms-flexbox;
+    display: flex;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #000;
+}
+
+.TripInfo-Cities h4 span {
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
