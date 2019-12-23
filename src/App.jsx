@@ -24,18 +24,18 @@ function App() {
             <About />
           </Route> */}
           <Route path="/checkout">
-          <div className="App">
-      <header className="App-header">
-      <CheckoutPage />
-        {/* <AsyncDemo stripePublicKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}/> */}
-        {/* <SplitFieldsDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw'/> */}
-        {/* <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' /> */}
-      </header>
-    </div>
+            <div className="App">
+              <header className="App-header">
+                <CheckoutPage />
+                {/* <AsyncDemo stripePublicKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}/> */}
+                {/* <SplitFieldsDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw'/> */}
+                {/* <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' /> */}
+              </header>
+            </div>
           </Route>
           <Route path="/">
-            <p>hi</p>
-            {/* <Home /> */}
+            {/* <p>hi</p> */}
+            <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
           </Route>
         </Switch>
       </div>
