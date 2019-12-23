@@ -31,7 +31,7 @@ export default class CheckoutForm extends Component {
         }
     }
 
-    handleOnSuccess(public_token, metadata) {
+    async handleOnSuccess(public_token, metadata) {
         const {fName, lName, email, dob } = this.state;
         await Axios.post(`https://flightsquad-payment.herokuapp.com/pay`, {
             public_token,
