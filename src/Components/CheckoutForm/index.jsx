@@ -45,7 +45,7 @@ export default class CheckoutForm extends Component {
             },
         });
         console.log('success');
-        console.log(token);
+        console.log(public_token);
         console.log(JSON.stringify(metadata, null, 2));
     }
 
