@@ -3,6 +3,7 @@ import TravelCitiesHeader from '../../Components/TravelCitiesHeader'
 import './checkout.scss';
 import CheckoutForm from '../../Components/CheckoutForm';
 import { withRouter } from 'react-router-dom';
+import Axios from 'axios';
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -19,11 +20,13 @@ class CheckoutPage extends Component {
     }
 
     async componentDidMount() {
-        await sleep(2000)
         const query = new URLSearchParams(this.props.location.search)
-        this.setState({
-            loading: query.get('id') || 'wow',
-        })
+        const res = await Axios.get(`https://flightsquad-payment.herokuapp.com/payment/${query.get('id')}`)
+        if (res.data) {
+            this.setState({
+                loading: res.data.amount || 'wow',
+            })
+        }
     }
     render() {
         const query = new URLSearchParams(this.props.location.search)
@@ -36,6 +39,7 @@ class CheckoutPage extends Component {
                         fName={query.get('fName') || ''}
                         lName={query.get('lName') || ''}
                         email={query.get('email') || ''}
+                        paymentId={query.get('id') || ''}
                     ></CheckoutForm>
                 </div>
             </div>
