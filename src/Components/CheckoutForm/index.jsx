@@ -14,10 +14,17 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
 import DobPicker from '../DatePicker/DobPicker';
-import { Input } from '@material-ui/core';
+import { Input, Button } from '@material-ui/core';
 import { PaymentRequestDemo } from '../PaymentForm';
+import PlaidLink from 'react-plaid-link'
 
 export default class CheckoutForm extends Component {
+    handleOnSuccess(token, metadata) {
+        // send token to client server
+    }
+    handleOnExit() {
+        // handle the case when your user exits Link
+    }
     render() {
         return (
             <div className="Checkout-Form">
@@ -52,7 +59,25 @@ export default class CheckoutForm extends Component {
 
                                     </div>
                                     <div className="PassengerForm-Row">
-                                        <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
+                                        <div className='PassengerForm-Row-Block'>
+                                            <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
+                                        </div>
+                                        <div className='PassengerForm-Row-Block'>
+                                            <PlaidLink
+                                                className="Custom-Plaid-Link"
+                                                style={{}}
+                                                clientName="Flight Squad"
+                                                env="sandbox"
+                                                product={["auth", "transactions"]}
+                                                publicKey="123b4a0a9a314cccb682f9c1274d90"
+                                                onExit={this.handleOnExit}
+                                                onSuccess={this.handleOnSuccess}>
+                                                    {/* https://material-ui.com/customization/components/ */}
+                                                <Button variant="contained" color="primary">
+                                                    Pay Now
+                                                </Button>
+                                            </PlaidLink>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
