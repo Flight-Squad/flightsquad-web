@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { DatePicker } from "@material-ui/pickers";
 
 function DobPicker(props) {
-    const [selectedDate, handleDateChange] = useState(new Date());
+    // const [selectedDate, handleDateChange] = useState(new Date());
 
     return (
         <Fragment>
@@ -31,8 +31,8 @@ function DobPicker(props) {
                 format="MM/dd/yyyy"
                 // label="Date of birth"
                 views={["year", "month", "date"]}
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={props.dob}
+                onChange={props.onChange}
                 fullWidth={true}
                 InputProps={{
                     disableUnderline: true,
