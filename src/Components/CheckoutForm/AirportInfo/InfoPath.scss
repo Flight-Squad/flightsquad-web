@@ -8,4 +8,8 @@
     position: absolute;
     left: 24px;
     z-index: 1;
+
+    @media (max-width: 640px) {
+        display: none;
+    }
 }
