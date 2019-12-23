@@ -18,6 +18,7 @@ import { Input, Button } from '@material-ui/core';
 import { PaymentRequestDemo } from '../PaymentForm';
 import PlaidLink from 'react-plaid-link'
 import * as EmailValidator from 'email-validator';
+import Axios from 'axios';
 
 export default class CheckoutForm extends Component {
     constructor(props) {
@@ -30,7 +31,20 @@ export default class CheckoutForm extends Component {
         }
     }
 
-    handleOnSuccess(token, metadata) {
+    handleOnSuccess(public_token, metadata) {
+        const {fName, lName, email, dob } = this.state;
+        await Axios.post(`https://flightsquad-payment.herokuapp.com/pay`, {
+            public_token,
+            account_id: metadata.account_id,
+            paymentId: this.props.paymentId,
+            customer: {
+                firstName: fName,
+                lastName: lName,
+                email,
+                dob,
+            },
+        });
+        console.log('success');
         console.log(token);
         console.log(JSON.stringify(metadata, null, 2));
     }
