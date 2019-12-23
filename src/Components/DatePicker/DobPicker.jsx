@@ -28,7 +28,7 @@ function DobPicker(props) {
             <DatePicker
                 disableFuture
                 openTo="year"
-                format="dd/MM/yyyy"
+                format="MM/dd/yyyy"
                 // label="Date of birth"
                 views={["year", "month", "date"]}
                 value={selectedDate}
