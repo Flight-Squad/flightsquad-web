@@ -68,7 +68,7 @@ class _PaymentRequestForm extends Component {
   }
 }
 
-const PaymentRequestForm = injectStripe(_PaymentRequestForm);
+export const PaymentRequestForm = injectStripe(_PaymentRequestForm);
 
 export class PaymentRequestDemo extends Component {
   render() {
