@@ -51,7 +51,7 @@ class _PaymentRequestForm extends Component {
           paymentRequestButton: {
             theme: 'light',
             height: '64px',
-            width: '250px'
+            type: 'book',
           },
         }}
       />
