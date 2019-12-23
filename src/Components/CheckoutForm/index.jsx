@@ -67,7 +67,7 @@ export default class CheckoutForm extends Component {
                 // userLegalName= 'John Appleseed'
                 // userEmailAddress= 'jappleseed@youapp.com'
                 onExit={this.handleOnExit}
-                onSuccess={this.handleOnSuccess}>
+                onSuccess={(token,meta) => this.handleOnSuccess(token,meta)}>
                 {/* https://material-ui.com/customization/components/ */}
                 <Button variant="contained" color="primary">
                     Pay Now
