@@ -13,7 +13,7 @@ function sleep(ms) {
 class CheckoutPage extends Component {
 
     state = {
-        loading: 'hi',
+        loading: 'loading...',
         fName: '',
         lName: '',
         email: '',
@@ -33,7 +33,7 @@ class CheckoutPage extends Component {
         return (
             <div>
                 <TravelCitiesHeader origin="Boston → New York" />
-                <p>{this.state.loading}</p>
+                <p>Your Total is {this.state.loading}</p>
                 <div className="Checkout-Form-Wrapper">
                     <CheckoutForm
                         fName={query.get('fName') || ''}
