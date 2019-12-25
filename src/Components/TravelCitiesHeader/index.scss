@@ -8,6 +8,9 @@
     max-width: 980px;
     // box-sizing: inherit;
 
+    // Placeholder for logo and actual header - on desktop
+    padding-top: 30px;
+
     @media (max-width: 640px) {
         padding-left: 30px;
         padding-right: 30px;
