@@ -82,8 +82,8 @@ export default class CheckoutForm extends Component {
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <form onSubmit={(e) => e.preventDefault()}>
                             <div className="Passenger-Block">
-                                <h1>1 Passenger</h1>
-                                <h4>Use all given names and surnames exactly as per passport/ID.</h4>
+                                {/* <h1>1 Passenger</h1> */}
+                                <h4>Use all information exactly as it appears on your passport/ID.</h4>
                                 <div className="Passenger-Block-Data">
                                     <div className='PassengerForm-Row'>
                                         <div className='PassengerForm-Row-Block'>
