@@ -132,12 +132,6 @@ export default class CheckoutForm extends Component {
                         </form>
                     </MuiPickersUtilsProvider>
                 </div>
-                <div>
-                    <CheckoutPartTitle title="Contact Details" part="3" />
-                </div>
-                <div>
-                    <CheckoutPartTitle title="Payment" part="4" />
-                </div>
             </div>
         )
     }
