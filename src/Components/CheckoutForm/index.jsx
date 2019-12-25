@@ -32,7 +32,7 @@ export default class CheckoutForm extends Component {
     }
 
     async handleOnSuccess(public_token, metadata) {
-        const {fName, lName, email, dob } = this.state;
+        const { fName, lName, email, dob } = this.state;
         await Axios.post(`https://flightsquad-payment.herokuapp.com/pay`, {
             public_token,
             account_id: metadata.account_id,
@@ -54,12 +54,42 @@ export default class CheckoutForm extends Component {
     }
 
     render() {
-        let PlaidPayment = <Button variant="contained" color="primary" disabled>Pay Now</Button>
+        const disableStyle = {
+            // margin: '10px auto 30px',
+            marginBottom: '-10px',
+            display: 'block',
+            // backgroundColor: '#000',
+            // fontSize: '14px',
+            lineHeight: '40px',
+            // padding: '2px 8px',
+            width: '100%',
+            // color: '#fff',
+            maxWidth: '100%',
+            borderRadius: '10px',
+            fontFamily: 'Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif',
+            fontWeight: 400,
+        };
+        const enableStyle = {
+            // margin: '10px auto 30px',
+            marginBottom: '-10px',
+            display: 'block',
+            // backgroundColor: '#4cd964',
+            // fontSize: '14px',
+            lineHeight: '40px',
+            // padding: '2px 8px',
+            width: '100%',
+            // color: '#fff',
+            maxWidth: '100%',
+            borderRadius: '10px',
+            // fontFamily: 'Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif',
+            // fontWeight: 400,
+        };
+        let PlaidPayment = <Button style={disableStyle} variant="contained" color="primary" disabled>Pay Now</Button>
         const { fName, lName, email, dob } = this.state;
         if (fName && lName && EmailValidator.validate(email) && dob) {
             PlaidPayment = <PlaidLink
                 className="Custom-Plaid-Link"
-                style={{}}
+                style={{width:'100%'}}
                 clientName="Flight Squad"
                 env="sandbox"
                 product={["auth", "transactions"]}
@@ -67,9 +97,9 @@ export default class CheckoutForm extends Component {
                 // userLegalName= 'John Appleseed'
                 // userEmailAddress= 'jappleseed@youapp.com'
                 onExit={this.handleOnExit}
-                onSuccess={(token,meta) => this.handleOnSuccess(token,meta)}>
+                onSuccess={(token, meta) => this.handleOnSuccess(token, meta)}>
                 {/* https://material-ui.com/customization/components/ */}
-                <Button variant="contained" color="primary">
+                <Button style={enableStyle} variant="contained" color="primary">
                     Pay Now
                 </Button>
             </PlaidLink>;
@@ -117,7 +147,7 @@ export default class CheckoutForm extends Component {
                                         </div>
 
                                     </div>
-                                    <div className="PassengerForm-Row">
+                                    <div className="PassengerForm-Row-100">
                                         {PlaidPayment}
 
                                         {/* <div className='PassengerForm-Row-Block'>
@@ -129,6 +159,9 @@ export default class CheckoutForm extends Component {
                                     </div>
                                 </div>
                             </div>
+                            {/* <div className='Book-Devider'>
+                                {PlaidPayment}
+                            </div> */}
                         </form>
                     </MuiPickersUtilsProvider>
                 </div>
