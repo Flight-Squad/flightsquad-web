@@ -1,22 +1,117 @@
 .Checkout-Form-Wrapper {
-    display: flex;
-    width: 100%;
-    max-width: 1097px;
-    margin: 0 auto;
+  display: flex;
+  width: 100%;
+  max-width: 1097px;
+  margin: 0 auto;
 }
 
 .Agenda {
-    color: #314358;
+  color: #314358;
 }
 
 .Travel-List {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: block;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .Travel-List li {
-    display: block;
+  display: block;
+}
+
+.Book-Price,
+.Book-Price > div {
+  height: 100%;
+  min-height: 100%;
+}
+
+.Book-Price {
+  width: 375px;
+  position: relative;
+  border-radius: 8px;
+  padding-left: 40px;
+  font-family: Helvetica Neue, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.Book-Price-Block {
+  background-color: #fff;
+  color: #314358;
+  font-weight: 500;
+  padding: 20px;
+  padding-bottom: 13px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.Book-Price-h2 {
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.Book-Price-PassCount-Block {
+  position: relative;
+  font-size: 14px;
+  font-family: Helvetica, sans-serif;
+  color: #999;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.Book-Price-PassCount-Block i {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  width: 30%;
+  font-style: normal;
+  font-size: 14px;
+  text-align: right;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 700;
+}
+
+.Book-Price-Total {
+  margin-top: 25px;
+  border-top: 1px dashed #d9d9d9;
+}
+
+.Book-Price-h1 {
+  font-size: 24px;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 12px;
+  -ms-flex-align: center;
+  align-items: center;
+
+  strong {
+    display: inline-block;
+    width: 70%;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #000;
+  }
+
+  i {
+    margin-left: 5px;
+    color: #999;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  big {
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 24px;
+    color: #4cd964;
+    font-weight: 400;
+  }
 }
