@@ -10,17 +10,21 @@ export default class AirportInfoAlt extends Component {
         const wrapperClass = this.props.narrow ? "Info-Wrapper Info-Wrapper-Narrow" : "Info-Wrapper";
         const infoPath = this.props.narrow ? null : <InfoPath color={this.props.color} />;
 
-        let tripInfoWrapper = null;
-        if (this.props.tripInfo) {
-            const { tripInfo } = this.props;
-            const {origin, destination, airline} = tripInfo;
+        const { tripInfo } = this.props;
+        let tripInfoWrapper, day, month;
+        if (tripInfo) {
+            const { origin, destination, airline, date } = tripInfo;
+            console.log(tripInfo);
+            day = date.split(' ')[1];
+            month = date.split(' ')[0];
+
             tripInfoWrapper = <TripInfoWrapper>
                 <TripInfoCities date={tripInfo.date} origin={origin.city} destination={destination.city}>
 
                     <TripInfoAirports>
-                        <TripInfoAirport name={origin.airport.name} iata={origin.airport.iata} time={origin.airport.time} />
+                        <TripInfoAirport name={''} iata={origin.iata} time={origin.time} />
                         <TripInfoDuration duration={tripInfo.duration} />
-                        <TripInfoAirport name={destination.airport.name} iata={destination.airport.iata} time={destination.airport.time} />
+                        <TripInfoAirport name={''} iata={destination.iata} time={destination.time} />
                     </TripInfoAirports>
                 </TripInfoCities>
                 <TripInfoAirline name={airline.name} flightNum={airline.flightNum} />
@@ -34,8 +38,8 @@ export default class AirportInfoAlt extends Component {
 
 
                     {tripInfoWrapper}
-                    <InfoCircle color={this.props.color} day='08' month='Mar' />
-                    <CityTitle name="London" duration="2h 05m" date="Mar 08" />
+                    <InfoCircle color={this.props.color} icon={this.props.icon} day={day} month={month} />
+                    <CityTitle name={this.props.city} duration={this.props.duration || 'Start'} date={this.props.date} />
                 </div>
             </li>
         )

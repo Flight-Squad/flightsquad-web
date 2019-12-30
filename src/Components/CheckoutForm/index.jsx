@@ -106,7 +106,9 @@ export default class CheckoutForm extends Component {
         }
         return (
             <div className="Checkout-Form">
-                <TripSummary />
+                <TripSummary>
+                    {this.props.children}
+                </TripSummary>
                 <div>
                     <CheckoutPartTitle title="Passenger Information" part="2" />
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
