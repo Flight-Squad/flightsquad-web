@@ -16,8 +16,8 @@ class _PaymentRequestForm extends Component {
       country: 'US',
       currency: 'usd',
       total: {
-        label: 'Demo total',
-        amount: 1000,
+        label: props.label || 'Flight Squad Trip',
+        amount: props.amount,
       },
       // Requesting the payer’s name, email, or phone is optional, but recommended.
       // It also results in collecting their billing address for Apple Pay.
@@ -25,8 +25,8 @@ class _PaymentRequestForm extends Component {
       requestPayerEmail: true,
     });
 
-    paymentRequest.on('token', ({complete, token, ...data}) => {
-      props.handleResult({paymentRequest: {token, data}});
+    paymentRequest.on('token', async ({complete, token, ...data}) => {
+      await props.handleResult({paymentRequest: {token, data}});
       complete('success');
     });
 
@@ -70,6 +70,8 @@ class _PaymentRequestForm extends Component {
 
 export const PaymentRequestForm = injectStripe(_PaymentRequestForm);
 
+export const convertUsdToPaymentAmount = usd => usd * 100;
+
 /**
  * Takes a `handleRequest: function({paymentRequest: {token, data}})`
  */
@@ -79,7 +81,7 @@ export class PaymentRequest extends Component {
     return (
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
         <Elements>
-          <PaymentRequestForm handleResult={this.props.handleResult} />
+          <PaymentRequestForm handleResult={this.props.handleResult} label={this.props.label} amount={this.props.amount} />
         </Elements>
       </StripeProvider>
     );

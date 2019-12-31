@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import { Button } from '@material-ui/core';
 import { PaymentRequest } from 'Components/Stripe/PaymentRequest';
+import { convertUsdToPaymentAmount } from 'Components/Stripe/PaymentRequest';
+import Axios from 'axios';
 
 export default function CreditCardPayment(props) {
     const disableStyle = {
@@ -18,6 +20,23 @@ export default function CreditCardPayment(props) {
         fontFamily: 'Helvetica Neue,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif',
         fontWeight: 400,
     }
+
+    const handleRequest = async ({ paymentRequest }) => {
+        if (process.env.NODE_ENV !== 'production') {
+            console.log(paymentRequest, props.paymentId);
+        }
+        await Axios.post(`https://flightsquad-payment.herokuapp.com/pay`, {
+            card_token: paymentRequest.token.id,
+            paymentId: props.paymentId,
+            // customer: {
+            //     firstName: fName,
+            //     lastName: lName,
+            //     email,
+            //     dob,
+            // },
+        });
+        console.log('success', 'card_payment')
+    }
     return (
 
         <Fragment>
@@ -34,7 +53,7 @@ export default function CreditCardPayment(props) {
             </div>
             <div className="PassengerForm-Row">
                 {props.enabled ?
-                    <PaymentRequest /> :
+                    <PaymentRequest handleResult={handleRequest} amount={convertUsdToPaymentAmount(props.amount)} /> :
                     <Button style={disableStyle} variant="contained" color="primary" disabled>Pay Now</Button>}
             </div>
         </Fragment>

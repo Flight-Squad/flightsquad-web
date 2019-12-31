@@ -94,7 +94,7 @@ export default class CheckoutForm extends Component {
                                             
                                         </div> */}
                                     </div>
-                                    <CreditCardPayment enabled={paymentIsEnabled} />
+                                    <CreditCardPayment enabled={paymentIsEnabled} paymentId={this.props.paymentId} amount={this.props.amount} />
                                 </div>
                             </div>
                             {/* <div className='Book-Devider'>

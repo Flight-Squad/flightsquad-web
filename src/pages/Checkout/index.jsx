@@ -16,7 +16,7 @@ function sleep(ms) {
 class CheckoutPage extends Component {
 
     state = {
-        loading: 'loading...',
+        amount: 'loading...',
         fName: '',
         lName: '',
         email: '',
@@ -47,7 +47,7 @@ class CheckoutPage extends Component {
         const res = await Axios.get(`https://flightsquad-payment.herokuapp.com/payment/${query.get('id')}`)
         if (res.data) {
             this.setState({
-                loading: res.data.amount || 'wow',
+                amount: res.data.amount || '...',
                 tripInfo: res.data.tripInfo,
             })
         }
@@ -66,6 +66,7 @@ class CheckoutPage extends Component {
                         lName={query.get('lName') || ''}
                         email={query.get('email') || ''}
                         paymentId={query.get('id') || ''}
+                        amount={this.state.amount}
                     >
                         <AirportInfoAlt
                             color='rgb(208, 2, 27)'
@@ -81,7 +82,7 @@ class CheckoutPage extends Component {
                             date={tripInfo.date}
                             tripInfo={tripInfo} />
                     </CheckoutForm>
-                    <BookPriceBlock loading={this.state.loading} />
+                    <BookPriceBlock loading={this.state.amount} />
                 </div>
             </div>
         )

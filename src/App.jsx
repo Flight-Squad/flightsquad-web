@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path="/">
             {/* <p>hi</p> */}
-            <PaymentRequest stripePublicKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY} />
+            <PaymentRequest stripePublicKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY} amount={10} />
           </Route>
         </Switch>
       </div>
