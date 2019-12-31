@@ -75,7 +75,7 @@ export const PaymentRequestForm = injectStripe(_PaymentRequestForm);
  */
 export class PaymentRequest extends Component {
   render() {
-    console.log(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+    // console.log(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
     return (
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
         <Elements>
