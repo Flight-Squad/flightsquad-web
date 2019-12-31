@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './index.scss';
 import CheckoutPartTitle from './PartTitle';
 import AirportInfo from './AirportInfo';
@@ -15,11 +15,11 @@ import DateFnsUtils from '@date-io/date-fns';
 
 import DobPicker from 'Components/DatePicker/DobPicker';
 import { Input, Button } from '@material-ui/core';
-import { PaymentRequest } from 'Components/Stripe/PaymentRequest';
 import PlaidLink from 'react-plaid-link'
 import * as EmailValidator from 'email-validator';
 import Axios from 'axios';
 import PlaidPayment from 'pages/Checkout/Payment/PlaidPayment';
+import CreditCardPayment from '../Payment/CreditCardPayment';
 
 export default class CheckoutForm extends Component {
     constructor(props) {
@@ -81,7 +81,7 @@ export default class CheckoutForm extends Component {
 
                                     </div>
                                     <div className="PassengerForm-Row-100">
-                                        <PlaidPayment 
+                                        <PlaidPayment
                                             disabled={!paymentIsEnabled}
                                             paymentId={this.props.paymentId}
                                             fName={fName} lName={lName} email={email} dob={dob}
@@ -94,20 +94,7 @@ export default class CheckoutForm extends Component {
                                             
                                         </div> */}
                                     </div>
-                                    <div className="PassengerForm-Row-100" style={{ textAlign: 'center', }}>
-                                        <p style={{
-                                            color: '#b6b6bc',
-                                            fontSize: '12px',
-                                            display: 'inline-block',
-                                            margin: '0 auto',
-                                            paddingTop: '10px'
-                                        }}>
-                                            Pay with Credit Card
-                                        </p>
-                                    </div>
-                                    <div className="PassengerForm-Row">
-                                        <PaymentRequest stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
-                                    </div>
+                                    <CreditCardPayment enabled={paymentIsEnabled} />
                                 </div>
                             </div>
                             {/* <div className='Book-Devider'>
@@ -120,3 +107,4 @@ export default class CheckoutForm extends Component {
         )
     }
 }
+
