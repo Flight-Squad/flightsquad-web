@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path="/">
             {/* <p>hi</p> */}
-            <PaymentRequest stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
+            <PaymentRequest stripePublicKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY} />
           </Route>
         </Switch>
       </div>

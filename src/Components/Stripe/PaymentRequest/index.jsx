@@ -70,10 +70,14 @@ class _PaymentRequestForm extends Component {
 
 export const PaymentRequestForm = injectStripe(_PaymentRequestForm);
 
+/**
+ * Takes a `handleRequest: function({paymentRequest: {token, data}})`
+ */
 export class PaymentRequest extends Component {
   render() {
+    console.log(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
     return (
-      <StripeProvider apiKey={this.props.stripePublicKey}>
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
         <Elements>
           <PaymentRequestForm handleResult={this.props.handleResult} />
         </Elements>

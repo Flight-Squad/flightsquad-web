@@ -74,6 +74,7 @@ export default class PlaidPayment extends Component {
     render() {
         const { disabled } = this.props;
         const buttonText = 'Pay with Bank';
+        // console.log(process.env.REACT_APP_PLAID_PUBLIC_KEY)
         return (
             disabled ? <Button style={this.disableStyle} variant="contained" color="primary" disabled>{buttonText}</Button>
                 :
@@ -83,7 +84,7 @@ export default class PlaidPayment extends Component {
                     clientName="Flight Squad"
                     env="sandbox"
                     product={["auth", "transactions"]}
-                    publicKey="123b4a0a9a314cccb682f9c1274d90"
+                    publicKey={process.env.REACT_APP_PLAID_PUBLIC_KEY}
                     // userLegalName= 'John Appleseed'
                     // userEmailAddress= 'jappleseed@youapp.com'
                     onExit={this.handleOnExit}

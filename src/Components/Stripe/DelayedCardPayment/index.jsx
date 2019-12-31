@@ -115,7 +115,7 @@ export class AsyncDemo extends Component {
       setTimeout(() => {
         clearInterval(countdown);
         this.setState({
-          stripe: window.Stripe(this.props.stripePublicKey),
+          stripe: window.Stripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY),
         });
       }, 3000);
     };

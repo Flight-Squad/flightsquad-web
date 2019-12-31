@@ -95,7 +95,7 @@ const SplitFieldsForm = injectStripe(_SplitFieldsForm);
 export class SplitFieldsDemo extends Component {
   render() {
     return (
-      <StripeProvider apiKey={this.props.stripePublicKey}>
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
         <Elements>
           <SplitFieldsForm handleResult={this.props.handleResult} />
         </Elements>
