@@ -1,0 +1,16 @@
+.Info-Wrapper {
+  padding: 0px 30px 20px 30px;
+  vertical-align: middle;
+  position: relative;
+  height: 150px;
+
+  @media (max-width: 640px) {
+    height: 200px;
+    padding: 20px;
+    width: 100%;
+  }
+}
+
+.Info-Wrapper-Narrow {
+  height: 80px;
+}

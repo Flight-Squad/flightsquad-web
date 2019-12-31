@@ -1,0 +1,15 @@
+.Info-Path {
+    height: 190px;
+    width: 120px;
+    border-radius: 50%;
+    border-left: 2px solid;
+    border-top: 2px solid transparent!important;
+    border-bottom: 2px solid transparent!important;
+    position: absolute;
+    left: 24px;
+    z-index: 1;
+
+    @media (max-width: 640px) {
+        display: none;
+    }
+}

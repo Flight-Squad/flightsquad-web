@@ -1,0 +1,45 @@
+.Info-Circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -o-object-fit: contain;
+    object-fit: contain;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.2);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.2);
+    border: 3px solid #fff;
+    color: #fff;
+    padding-top: 5px;
+    position: relative;
+    z-index: 2;
+}
+
+.Info-Circle-Marker {
+    color: hsla(0,0%,100%,0);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    // background-image: url(/static/media/ic-route-normal.8abd9613.svg);
+}
+
+.Info-Circle big, .Info-Circle small {
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    display: block;
+    text-transform: uppercase;
+}
+
+.Info-Circle big {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: .81;
+}
+
+.Info-Circle small {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.4;
+}
