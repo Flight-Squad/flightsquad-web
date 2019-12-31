@@ -55,9 +55,10 @@ class CheckoutPage extends Component {
     render() {
         const query = new URLSearchParams(this.props.location.search)
         const { tripInfo } = this.state;
+        const header = `${tripInfo.origin.city} → ${tripInfo.destination.city}`
         return (
             <div>
-                <TravelCitiesHeader origin="Boston → New York" />
+                <TravelCitiesHeader origin={header} />
                 {/* <p>Your Total is {this.state.loading}</p> */}
                 <div className="Checkout-Form-Wrapper">
                     <CheckoutForm
