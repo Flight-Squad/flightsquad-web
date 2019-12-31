@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { PaymentRequestDemo } from './Components/PaymentForm';
-import { SplitFieldsDemo } from './Components/CardPayment';
-import { AsyncDemo } from './Components/DelayedCardPayment';
+import { PaymentRequest } from './Components/Stripe/PaymentRequest';
+import { SplitFieldsDemo } from './Components/Stripe/CardPayment';
+import { AsyncDemo } from './Components/Stripe/DelayedCardPayment';
 import CheckoutPage from './pages/Checkout';
 import {
   BrowserRouter as Router,
@@ -35,7 +35,7 @@ function App() {
           </Route>
           <Route path="/">
             {/* <p>hi</p> */}
-            <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
+            <PaymentRequest stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
           </Route>
         </Switch>
       </div>

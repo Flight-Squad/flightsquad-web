@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import TravelCitiesHeader from '../../Components/TravelCitiesHeader'
+import TravelCitiesHeader from './TravelHeader'
 import './checkout.scss';
-import CheckoutForm from '../../Components/CheckoutForm';
+import CheckoutForm from './Form';
 import { withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import BookPriceBlock from './BookPriceBlock';
-import AirportInfoAlt from '../../Components/CheckoutForm/AirportInfo/alt';
+import AirportInfoAlt from './Form/AirportInfo/alt';
 import RoomIcon from '@material-ui/icons/RoomOutlined';
 
 function sleep(ms) {
