@@ -10,8 +10,6 @@ import DobPicker from 'Components/DatePicker/DobPicker';
  * - `id`: `number`
  */
 export function PassengerBlock({ passengerInfo, id, dispatcher, deletable }) {
-    const dispatch = useContext(PassengersDispatch);
-    // const update = (info) => dispatch({ type: 'update', id, info });
     const update = (info) => dispatcher({ type: 'update', id, info });
     const info = passengerInfo;
     console.log('Passenger Block:', id, passengerInfo);
@@ -55,6 +53,24 @@ export function PassengerBlock({ passengerInfo, id, dispatcher, deletable }) {
                 </div>
                 <button onClick={() => dispatcher({ type: 'add' })}>Add Passenger</button>
                 {deleteButton}
+            </div>
+        </div>
+    );
+}
+
+export function BillingInfo({ notifyEmail, email }) {
+    return (
+        <div className="Passenger-Block">
+            {/* <h1>1 Passenger</h1> */}
+            {/* <h4>Use all information exactly as it appears on your passport/ID.</h4> */}
+            <div className="Passenger-Block-Data">
+                <div className='PassengerForm-Row-Block'>
+                    <label>Email</label>
+                    <input type="email" disableUnderline={true}
+                        value={email || ''}
+                        onChange={e => notifyEmail(e.target.value)}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -12,36 +12,57 @@
     border-bottom: 0;
     width: 100%;
   }
+  .Checkout {
+    margin: 20px 0;
+  }
 }
 
-.Passenger-Block {
-  position: relative;
-  display: block;
+.PaymentMethods-Block {
+  background-color: #fff;
   margin: 30px;
-  margin-bottom: 60px;
+  -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
 
-.Passenger-Block,
-.Passenger-Block * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+.Payment-Controls-Block {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 20px;
+
+  @media screen and (max-width: 640px) {
+    -ms-flex: 1 1;
+    flex: 1 1;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0;
+  }
 }
 
-.Passenger-Block h1 {
-  color: #000;
-  font-size: 30px;
+.Payment-Controls-Block-Radio-Item {
+  display: inline-block;
+  position: relative;
+  padding: 0 6px;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+
+  @media screen and (max-width: 640px) {
+    // justify-content: center;
+    margin: 0;
+    min-height: 40px;
+  }
 }
 
-.Passenger-Block h4 {
-  font-weight: 400;
-  color: #97979c;
-  font-size: 12px;
-}
-
-.Passenger-Block label {
-  display: block;
-  font-size: 12px;
-  padding-bottom: 5px;
+.Book-PageError {
+  padding: 10px 30px;
+  margin: 0;
+  min-height: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #ff5c45;
 }
 
 .Checkout-Form .DayPickerInput input,
@@ -63,43 +84,6 @@
   border-radius: 6px;
   font-family: Helvetica Neue, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;
-}
-
-.Passenger-Block-Data {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  color: #333;
-  height: 100%;
-  -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
-}
-
-.PassengerForm-Row {
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.PassengerForm-Row-100 {
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 20px;
-
-  div {
-    width: 100%;
-  }
-}
-
-.PassengerForm-Row-Block {
-  -ms-flex: 3 1;
-  flex: 3 1;
-  padding: 5px;
-}
-
-.PassengerForm-Row-Block-Huge {
-  -ms-flex: 4 1;
-  flex: 4 1;
 }
 
 .PaymentRequestButton {

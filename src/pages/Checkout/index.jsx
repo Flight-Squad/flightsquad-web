@@ -162,24 +162,10 @@ class CheckoutPage extends Component {
                         email={customer.email || ""}
                         paymentId={this.state.id}
                         updateNumPassengers={this.updateNumPassengers}
+                        passengerCount={this.state.numPassengers}
                         amount={amount * this.state.numPassengers}
                     >
                         {airportInfo}
-                        {/* <AirportInfoAlt
-              color="rgb(208, 2, 27)"
-              city={tripInfo.origin.city}
-              duration={tripInfo.duration || "Start"}
-              date={tripInfo.date}
-              icon={<RoomIcon style={{ color: "white" }} />}
-            />
-            <AirportInfoAlt
-              narrow
-              color="rgb(208, 2, 27)"
-              city={tripInfo.destination.city}
-              duration={"End"}
-              date={tripInfo.date}
-              tripInfo={tripInfo}
-            /> */}
                     </CheckoutForm>
                     <BookPriceBlock loading={this.state.amount * this.state.numPassengers} />
                 </div>

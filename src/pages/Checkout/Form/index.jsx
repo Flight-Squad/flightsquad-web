@@ -21,9 +21,15 @@ import Axios from 'axios';
 import PlaidPayment from 'pages/Checkout/Payment/PlaidPayment';
 import CreditCardPayment from '../Payment/CreditCardPayment';
 import { PassengersDispatch } from './context';
-import { PassengerBlock } from './PassengerBlock';
+import { PassengerBlock, BillingInfo } from './PassengerBlock';
 import { isValid } from 'date-fns';
 import nanoid from 'nanoid';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 /**
  * Returns an empty Passenger
@@ -88,13 +94,35 @@ function PassengersForm({ updateNumPassengers, notifyValidity }) {
     )
 }
 
+function SelectPaymentMethod({ notifyPaymentMethod, method }) {
+    const handleChange = event => notifyPaymentMethod(event.target.value);
+
+    function PaymentOption({ optionName, label }) {
+        return (
+            <FormControlLabel value={optionName} control={<Radio checked={method === optionName} onChange={handleChange} name="payment-options" />} label={label} />
+        );
+    }
+
+    return (
+        <>
+            <PaymentOption label='Bank ACH' optionName='ach' />
+            <PaymentOption label='Credit Card' optionName='credit' />
+        </>
+    );
+}
+
 export default class CheckoutForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             formIsValid: false,
+            billingEmail: '',
+            paymentMethod: 'ach',
         }
         this.notifyPassengerValidity = this.notifyPassengerValidity.bind(this);
+        this.notifyBillingEmail = this.notifyBillingEmail.bind(this);
+        this.emailIsValid = this.emailIsValid.bind(this);
+        this.notifyPaymentMethod = this.notifyPaymentMethod.bind(this);
     }
 
     notifyPassengerValidity(isValid) {
@@ -102,9 +130,21 @@ export default class CheckoutForm extends Component {
         this.setState({ formIsValid: isValid });
     }
 
+    notifyBillingEmail(email) {
+        console.log('Billing email is valid:', this.emailIsValid(email));
+        this.setState({ billingEmail: email });
+    }
+
+    notifyPaymentMethod(method) {
+        this.setState({ paymentMethod: method });
+    }
+
+    emailIsValid(email) {
+        return EmailValidator.validate(email);
+    }
+
     render() {
-        const { fName, lName, email, dob } = this.state;
-        const paymentIsEnabled = fName && lName && EmailValidator.validate(email) && dob;
+        const paymentIsEnabled = this.state.formIsValid && this.emailIsValid(this.state.billingEmail);
         return (
             <div className="Checkout-Form">
                 <TripSummary>
@@ -120,6 +160,27 @@ export default class CheckoutForm extends Component {
                             </div> */}
                         </form>
                     </MuiPickersUtilsProvider>
+                </div>
+                <div>
+                    <CheckoutPartTitle title="Contact Details" part="3" />
+                    <BillingInfo notifyEmail={this.notifyBillingEmail} email={this.state.billingEmail} />
+                </div>
+                <div>
+                    <CheckoutPartTitle title="Payment" part="4" />
+                    <div className='Checkout'>
+                        <section className='custom-tabs' >
+                            <div className='PaymentMethods-Block'>
+                                <div className='PaymentMethods-Block-Header'>
+                                    <h1 className='Book-PageError'></h1>
+                                    <div className='Payment-Controls-Block'>
+                                        <SelectPaymentMethod notifyPaymentMethod={this.notifyPaymentMethod} method={this.state.paymentMethod} />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <PlaidPayment email={this.state.billingEmail} enabled={paymentIsEnabled} paymentId={this.props.paymentId} passengerCount={this.props.passengerCount} />
+                    <CreditCardPayment enabled={paymentIsEnabled} paymentId={this.props.paymentId} amount={this.props.amount} passengerCount={this.props.passengerCount} />
                 </div>
             </div>
         )

@@ -1,3 +1,7 @@
 tasks:
   - init: npm install
     command: npm run start
+
+vscode:
+  extensions:
+    - sibiraj-s.vscode-scss-formatter@1.4.3:esRMS8nkch808CWUeB4Y0g==

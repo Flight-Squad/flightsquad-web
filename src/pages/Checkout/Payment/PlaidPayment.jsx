@@ -56,10 +56,10 @@ export default class PlaidPayment extends Component {
             account_id: metadata.account_id,
             paymentId: this.props.paymentId,
             customer: {
-                firstName: fName,
-                lastName: lName,
+                // firstName: fName,
+                // lastName: lName,
                 email,
-                dob,
+                // dob,
             },
         });
         console.log('success');
@@ -72,12 +72,11 @@ export default class PlaidPayment extends Component {
     }
 
     render() {
-        const { disabled } = this.props;
+        const { enabled } = this.props;
         const buttonText = 'Pay with Bank';
         // console.log(process.env.REACT_APP_PLAID_PUBLIC_KEY)
         return (
-            disabled ? <Button style={this.disableStyle} variant="contained" color="primary" disabled>{buttonText}</Button>
-                :
+            enabled ?
                 <PlaidLink
                     className="Custom-Plaid-Link"
                     style={{ width: '100%' }}
@@ -94,6 +93,8 @@ export default class PlaidPayment extends Component {
                         {buttonText}
                     </Button>
                 </PlaidLink>
+
+                : <Button style={this.disableStyle} variant="contained" color="primary" disabled>{buttonText}</Button>
         )
     }
 }
