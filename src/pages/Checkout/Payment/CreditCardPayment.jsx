@@ -25,7 +25,7 @@ export default function CreditCardPayment(props) {
         if (process.env.NODE_ENV !== 'production') {
             console.log(paymentRequest, props.paymentId);
         }
-        await Axios.post(`https://flightsquad-payment.herokuapp.com/pay`, {
+        await Axios.post(`https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com/card/pay`, {
             card_token: paymentRequest.token.id,
             paymentId: props.paymentId,
             // customer: {

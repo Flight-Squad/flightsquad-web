@@ -18,7 +18,7 @@ import { Input, Button } from '@material-ui/core';
 import PlaidLink from 'react-plaid-link'
 import * as EmailValidator from 'email-validator';
 import Axios from 'axios';
-import PlaidPayment from 'Pages/Checkout/Payment/PlaidPayment';
+import PlaidPayment from 'pages/Checkout/Payment/PlaidPayment';
 import CreditCardPayment from '../Payment/CreditCardPayment';
 
 export default class CheckoutForm extends Component {

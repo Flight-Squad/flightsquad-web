@@ -4,7 +4,7 @@ import './App.css';
 import { PaymentRequest } from './Components/Stripe/PaymentRequest';
 import { SplitFieldsDemo } from './Components/Stripe/CardPayment';
 import { AsyncDemo } from './Components/Stripe/DelayedCardPayment';
-import CheckoutPage from './Pages/Checkout';
+import CheckoutPage from './pages/Checkout';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,7 +23,7 @@ function App() {
           {/* <Route path="/about">
             <About />
           </Route> */}
-          <Route path="/checkout">
+          <Route path="/:id">
             <div className="App">
               <header className="App-header">
                 <CheckoutPage />

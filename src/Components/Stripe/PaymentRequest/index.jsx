@@ -70,7 +70,7 @@ class _PaymentRequestForm extends Component {
 
 export const PaymentRequestForm = injectStripe(_PaymentRequestForm);
 
-export const convertUsdToPaymentAmount = usd => usd * 100;
+export const convertUsdToPaymentAmount = usd => parseInt(usd * 100);
 
 /**
  * Takes a `handleRequest: function({paymentRequest: {token, data}})`

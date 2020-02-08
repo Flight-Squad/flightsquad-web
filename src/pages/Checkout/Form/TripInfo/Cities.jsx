@@ -4,7 +4,9 @@ import './Cities.scss'
 /**
  * Takes 3 strings
  * 
- * `date` -> e.g Mar 08
+ * `month` -> e.g Mar
+ * 
+ * `day` -> e.g 08
  * 
  * `origin` -> e.g Boston
  * 
@@ -15,7 +17,7 @@ export class TripInfoCities extends Component {
         return (
             <div className="TripInfo-Cities">
                 <h4>
-                    <span>{this.props.date}</span>
+                    <span>{`${this.props.month} ${this.props.day}`}</span>
                     {this.props.origin} → {this.props.destination}
                 </h4>
                 {this.props.children}
