@@ -1,0 +1,66 @@
+.Passenger-Block {
+  position: relative;
+  display: block;
+  margin: 30px;
+  margin-bottom: 60px;
+}
+
+.Passenger-Block,
+.Passenger-Block * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.Passenger-Block h1 {
+  color: #000;
+  font-size: 30px;
+}
+
+.Passenger-Block h4 {
+  font-weight: 400;
+  color: #97979c;
+  font-size: 12px;
+}
+
+.Passenger-Block label {
+  display: block;
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+
+.Passenger-Block-Data {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  color: #333;
+  height: 100%;
+  -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.PassengerForm-Row {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.PassengerForm-Row-100 {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+
+  div {
+    width: 100%;
+  }
+}
+
+.PassengerForm-Row-Block {
+  -ms-flex: 3 1;
+  flex: 3 1;
+  padding: 5px;
+}
+
+.PassengerForm-Row-Block-Huge {
+  -ms-flex: 4 1;
+  flex: 4 1;
+}

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, useReducer, useState } from 'react'
 import './index.scss';
 import CheckoutPartTitle from './PartTitle';
 import AirportInfo from './AirportInfo';
@@ -20,16 +20,86 @@ import * as EmailValidator from 'email-validator';
 import Axios from 'axios';
 import PlaidPayment from 'pages/Checkout/Payment/PlaidPayment';
 import CreditCardPayment from '../Payment/CreditCardPayment';
+import { PassengersDispatch } from './context';
+import { PassengerBlock } from './PassengerBlock';
+import { isValid } from 'date-fns';
+import nanoid from 'nanoid';
+
+/**
+ * Returns an empty Passenger
+ */
+function emptyPassenger() {
+    return {
+        fName: '',
+        lName: '',
+        dob: '',
+    };
+}
+
+function PassengersForm({ updateNumPassengers, notifyValidity }) {
+    const [passengers, setPassengers] = useState({ '0': emptyPassenger() })
+
+    function dispatcher(action) {
+        function updatePassengers(newPassengers) {
+            setPassengers({ ...newPassengers });
+            updateNumPassengers(Object.keys(newPassengers).length);
+            notifyValidity(formIsValid(newPassengers));
+        }
+        // Interpreter complained about scoping of `const newPassengers`
+        // So some cases were scoped in closures to maintain clarity
+        switch (action.type) {
+            case 'delete':
+                {
+                    const newPassengers = Object.assign({}, passengers);
+                    delete newPassengers[action.id];
+                    updatePassengers(newPassengers);
+                }
+                break;
+            case 'update':
+                {
+                    console.log('update passengers:', passengers[action.id], action.info);
+                    const newPassengerInfo = { ...passengers[action.id], ...action.info };
+                    const newPassengers = { ...passengers, [action.id]: newPassengerInfo };
+                    updatePassengers(newPassengers);
+                }
+                break;
+            case 'add':
+                updatePassengers({ ...passengers, [nanoid(2)]: emptyPassenger() });
+                break;
+            default:
+                throw new Error(`${action.type} action not supported in passengers dispatcher`);
+        }
+    }
+
+    function formIsValid(passengers) {
+        return Object.entries(passengers).every(([id, info]) => {
+            return Boolean(info.fName) && Boolean(info.lName) && isValid(info.dob);
+        })
+    }
+
+    // console.log('Form is Valid:', formIsValid(passengers));
+
+    return (
+        <div>
+            {Object.entries(passengers).map(([id, info]) => {
+                return <PassengerBlock passengerInfo={info} id={id} dispatcher={dispatcher} deletable={id !== '0'} />
+            })}
+        </div>
+    )
+}
 
 export default class CheckoutForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fName: this.props.fName || '',
-            lName: this.props.lName || '',
-            email: this.props.email || '',
-            dob: /* this.props.dob || */ '', // leave un-initialized to ensure user selects a date
+            formIsValid: false,
         }
+        this.notifyPassengerValidity = this.notifyPassengerValidity.bind(this);
+    }
+
+    notifyPassengerValidity(isValid) {
+        console.log('Form is Valid:', isValid);
+        this.setState({ formIsValid: isValid });
     }
 
     render() {
@@ -44,59 +114,7 @@ export default class CheckoutForm extends Component {
                     <CheckoutPartTitle title="Passenger Information" part="2" />
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <form onSubmit={(e) => e.preventDefault()}>
-                            <div className="Passenger-Block">
-                                {/* <h1>1 Passenger</h1> */}
-                                <h4>Use all information exactly as it appears on your passport/ID.</h4>
-                                <div className="Passenger-Block-Data">
-                                    <div className='PassengerForm-Row'>
-                                        <div className='PassengerForm-Row-Block'>
-                                            <label>First Name</label>
-                                            <input required autoComplete="fname" type="text" name="fName"
-                                                value={this.state.fName || ''}
-                                                onChange={(e) => this.setState({ fName: e.target.value })}
-                                            />
-                                        </div>
-                                        <div className='PassengerForm-Row-Block'>
-                                            <label>Last Name</label>
-                                            <input required autoComplete="lname" type="text" name="lName"
-                                                value={this.state.lName || ''}
-                                                onChange={(e) => this.setState({ lName: e.target.value })}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='PassengerForm-Row'>
-                                        <div className='PassengerForm-Row-Block'>
-                                            <label>Email</label>
-                                            <input type="email" disableUnderline={true}
-                                                value={this.state.email || ''}
-                                                onChange={(e) => this.setState({ email: e.target.value })}
-                                            />
-                                        </div>
-                                        <div className='PassengerForm-Row-Block'>
-                                            <label>Date of Birth</label>
-                                            <DobPicker required dob={this.state.dob || null}
-                                                onChange={(date) => this.setState({ dob: date })}
-                                            />
-                                        </div>
-
-                                    </div>
-                                    <div className="PassengerForm-Row-100">
-                                        <PlaidPayment
-                                            disabled={!paymentIsEnabled}
-                                            paymentId={this.props.paymentId}
-                                            fName={fName} lName={lName} email={email} dob={dob}
-                                        />
-
-                                        {/* <div className='PassengerForm-Row-Block'>
-                                            <PaymentRequestDemo stripePublicKey='pk_live_jP7jiabekhWDp4SbcN8G7bmw' />
-                                        </div>
-                                        <div className='PassengerForm-Row-Block'>
-                                            
-                                        </div> */}
-                                    </div>
-                                    <CreditCardPayment enabled={paymentIsEnabled} paymentId={this.props.paymentId} amount={this.props.amount} />
-                                </div>
-                            </div>
+                            <PassengersForm updateNumPassengers={this.props.updateNumPassengers} notifyValidity={this.notifyPassengerValidity} />
                             {/* <div className='Book-Devider'>
                                 {PlaidPayment}
                             </div> */}
