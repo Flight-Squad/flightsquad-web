@@ -28,12 +28,7 @@ export default function CreditCardPayment(props) {
         await Axios.post(`https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com/card/pay`, {
             card_token: paymentRequest.token.id,
             paymentId: props.paymentId,
-            // customer: {
-            //     firstName: fName,
-            //     lastName: lName,
-            //     email,
-            //     dob,
-            // },
+            passengerCount: props.passengerCount,
         });
         console.log('success', 'card_payment')
     }

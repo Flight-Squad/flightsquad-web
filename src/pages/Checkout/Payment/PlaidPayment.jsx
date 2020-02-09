@@ -50,11 +50,12 @@ export default class PlaidPayment extends Component {
     }
 
     async handleOnSuccess(public_token, metadata) {
-        const { fName, lName, email, dob } = this.props;
+        const { fName, lName, email, dob, passengerCount } = this.props;
         await Axios.post(`https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com/bank/pay`, {
             public_token,
             account_id: metadata.account_id,
             paymentId: this.props.paymentId,
+            passengerCount,
             customer: {
                 // firstName: fName,
                 // lastName: lName,
