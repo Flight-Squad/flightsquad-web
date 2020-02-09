@@ -30,6 +30,7 @@
   display: flex;
   -ms-flex-align: center;
   align-items: center;
+  justify-content: space-between;
   padding: 0 20px;
 
   @media screen and (max-width: 640px) {
@@ -46,13 +47,42 @@
   position: relative;
   padding: 0 6px;
   align-items: center;
-  justify-content: space-between;
   width: 50%;
 
   @media screen and (max-width: 640px) {
-    // justify-content: center;
+    justify-content: center;
     margin: 0;
     min-height: 40px;
+  }
+}
+
+.PaymentForm {
+  position: relative;
+  display: block;
+  padding: 0 30px 30px;
+
+  .PaymentForm-Title {
+    font-family: Roboto;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
+    margin-bottom: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .PaymentForm-Description {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.64;
+    font-family: Roboto;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #4a4a4a;
   }
 }
 

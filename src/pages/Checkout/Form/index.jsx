@@ -106,8 +106,39 @@ function SelectPaymentMethod({ notifyPaymentMethod, method }) {
     return (
         <>
             <PaymentOption label='Bank ACH' optionName='ach' />
-            <PaymentOption label='Credit Card' optionName='credit' />
+            <PaymentOption label='Credit Card (+2%)' optionName='credit' />
         </>
+    );
+}
+
+function PaymentForm(props) {
+    const { method, enabled } = props;
+    function stateFromMethod(method) {
+        switch (method) {
+            case 'ach':
+                return {
+                    title: 'ACH',
+                    description: "Please select 'Pay Now' to continue. We use Visa's infrastructure to secure your transaction.",
+                    button: <PlaidPayment email={props.email} enabled={enabled} paymentId={props.paymentId} passengerCount={props.passengerCount} />,
+                };
+            case 'credit':
+                return {
+                    title: 'Credit Card',
+                    description: "Please select 'Pay Now' to continue. We use Stripe's infrastructure to secure your transaction.",
+                    button: <CreditCardPayment enabled={enabled} paymentId={props.paymentId} amount={props.amount * 1.02} passengerCount={props.passengerCount} />,
+                };
+            default: return {}
+        }
+    }
+    const state = stateFromMethod(method);
+
+
+    return (
+        <div className='PaymentForm'>
+            <h3 className='PaymentForm-Title'>{state.title}</h3>
+            <p className='PaymentForm-Description'>{state.description}</p>
+            <div style={{ marginTop: '30px' }} >{state.button}</div>
+        </div>
     );
 }
 
@@ -176,11 +207,16 @@ export default class CheckoutForm extends Component {
                                         <SelectPaymentMethod notifyPaymentMethod={this.notifyPaymentMethod} method={this.state.paymentMethod} />
                                     </div>
                                 </div>
+                                <PaymentForm
+                                    method={this.state.paymentMethod}
+                                    enabled={paymentIsEnabled}
+                                    email={this.state.billingEmail}
+                                    paymentId={this.props.paymentId}
+                                    passengerCount={this.props.passengerCount}
+                                    amount={this.props.amount} />
                             </div>
                         </section>
                     </div>
-                    <PlaidPayment email={this.state.billingEmail} enabled={paymentIsEnabled} paymentId={this.props.paymentId} passengerCount={this.props.passengerCount} />
-                    <CreditCardPayment enabled={paymentIsEnabled} paymentId={this.props.paymentId} amount={this.props.amount} passengerCount={this.props.passengerCount} />
                 </div>
             </div>
         )

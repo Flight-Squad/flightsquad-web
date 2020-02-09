@@ -73,7 +73,7 @@ export default class PlaidPayment extends Component {
 
     render() {
         const { enabled } = this.props;
-        const buttonText = 'Pay with Bank';
+        const buttonText = 'Pay Now';
         // console.log(process.env.REACT_APP_PLAID_PUBLIC_KEY)
         return (
             enabled ?

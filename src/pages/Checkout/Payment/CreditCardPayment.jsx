@@ -40,22 +40,9 @@ export default function CreditCardPayment(props) {
     return (
 
         <Fragment>
-            <div className="PassengerForm-Row-100" style={{ textAlign: 'center', }}>
-                <p style={{
-                    color: '#b6b6bc',
-                    fontSize: '12px',
-                    display: 'inline-block',
-                    margin: '0 auto',
-                    paddingTop: '10px'
-                }}>
-                    Pay with Credit Card
-                                        </p>
-            </div>
-            <div className="PassengerForm-Row">
-                {props.enabled ?
-                    <PaymentRequest handleResult={handleRequest} amount={convertUsdToPaymentAmount(props.amount)} /> :
-                    <Button style={disableStyle} variant="contained" color="primary" disabled>Pay Now</Button>}
-            </div>
+            {props.enabled ?
+                <PaymentRequest handleResult={handleRequest} amount={convertUsdToPaymentAmount(props.amount)} /> :
+                <Button style={disableStyle} variant="contained" color="primary" disabled>Pay Now</Button>}
         </Fragment>
     )
 }
