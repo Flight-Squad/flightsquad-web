@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { Button } from '@material-ui/core';
 import PlaidLink from 'react-plaid-link'
 import './PlaidPayment.scss'
+import { PricesquadApiRoot } from 'pages/config/pricesquad';
 
 /**
  * Expects
@@ -51,10 +52,10 @@ export default class PlaidPayment extends Component {
 
     async handleOnSuccess(public_token, metadata) {
         const { fName, lName, email, dob, passengerCount } = this.props;
-        await Axios.post(`https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com/bank/pay`, {
+        const res = await Axios.post(`${PricesquadApiRoot}/transactions/bank/pay`, {
             public_token,
             account_id: metadata.account_id,
-            paymentId: this.props.paymentId,
+            txId: this.props.paymentId,
             passengerCount,
             customer: {
                 // firstName: fName,
@@ -63,7 +64,7 @@ export default class PlaidPayment extends Component {
                 // dob,
             },
         });
-        console.log('success');
+        console.log('/bank/pay success');
         console.log(public_token);
         console.log(JSON.stringify(metadata, null, 2));
     }

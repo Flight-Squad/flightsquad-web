@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import { PaymentRequest } from 'Components/Stripe/PaymentRequest';
 import { convertUsdToPaymentAmount } from 'Components/Stripe/PaymentRequest';
 import Axios from 'axios';
+import { PricesquadApiRoot } from 'pages/config/pricesquad';
 
 export default function CreditCardPayment(props) {
     const disableStyle = {
@@ -25,9 +26,9 @@ export default function CreditCardPayment(props) {
         if (process.env.NODE_ENV !== 'production') {
             console.log(paymentRequest, props.paymentId);
         }
-        await Axios.post(`https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com/card/pay`, {
+        await Axios.post(`${PricesquadApiRoot}/transactions/card/pay`, {
             card_token: paymentRequest.token.id,
-            paymentId: props.paymentId,
+            txId: props.paymentId,
             passengerCount: props.passengerCount,
         });
         console.log('success', 'card_payment')

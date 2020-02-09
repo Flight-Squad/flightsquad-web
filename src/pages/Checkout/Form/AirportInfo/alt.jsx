@@ -12,7 +12,7 @@ export default class AirportInfoAlt extends Component {
         const infoPath = this.props.narrow ? null : <InfoPath color={this.props.color} />;
 
         let tripInfoWrapper, day, month;
-        const {tripInfo} = this.props;
+        const { tripInfo } = this.props;
         if (tripInfo && tripInfo.length >= 2) {
             const [origin, dest] = this.props.tripInfo;
             const departDate = new Date(origin.departTime);
@@ -35,7 +35,7 @@ export default class AirportInfoAlt extends Component {
             </TripInfoWrapper>;
         }
 
-        console.log(this.props.date)
+        console.log('AirportInfo Date:', this.props.date)
         return (
             <li>
                 <div className={wrapperClass}>

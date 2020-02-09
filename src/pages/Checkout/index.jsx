@@ -7,7 +7,7 @@ import Axios from "axios";
 import BookPriceBlock from "./BookPriceBlock";
 import AirportInfoAlt from "./Form/AirportInfo/alt";
 import RoomIcon from "@material-ui/icons/RoomOutlined";
-import { Pricesquad } from "@flight-squad/common";
+import { PriceSquad } from "pages/config/pricesquad";
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -79,11 +79,8 @@ class CheckoutPage extends Component {
     };
 
     async componentDidMount() {
-        const ps = new Pricesquad(
-            "https://pricesquad-a-pujitm-ref-opq9o7.herokuapp.com"
-        );
-        const tx = await ps.tx.get(this.props.match.params.id);
-        console.log(tx);
+        const tx = await PriceSquad.tx.get(this.props.match.params.id);
+        console.log('TX Response:', tx);
         if (tx) {
             this.setState({
                 ...tx,
